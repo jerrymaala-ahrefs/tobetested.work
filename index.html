@@ -12,21 +12,9 @@
     <!-- Responsive Image -->
     <img src="images/welcome-to-my-site.png" alt="Welcome banner for my static website" class="responsive-image" />
 
+    <script src="scripts/load-nav.js"></script>
     <script>
-        fetch("nav.html")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById("nav-placeholder").innerHTML = data;
-            })
-            .catch(error => {
-                console.error("Error loading navigation:", error);
-                document.getElementById("nav-placeholder").innerHTML = "<p>Navigation failed to load.</p>";
-            });
+        loadNavigation("nav.html");
     </script>
 </body>
 </html>
