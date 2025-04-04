@@ -4,13 +4,14 @@ nav ul {
     gap: 1rem;
     list-style: none;
     padding: 1rem;
-    background-color: #f0f0f0;
 }
 
 nav ul li a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
+    font-family: 'Arial', 'Helvetica', sans-serif; /* Modern sans-serif typeface */
+    font-size: 1.2rem; /* Increased font size */
 }
 
 nav ul li a:hover {
