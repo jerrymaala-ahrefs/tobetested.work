@@ -1,5 +1,3 @@
-/* filepath: /Users/jerrymaala/tobetested/tobetested.work/styles.css */
-
 /* Style for the navigation bar */
 nav ul {
     display: flex;
@@ -17,4 +15,12 @@ nav ul li a {
 
 nav ul li a:hover {
     color: #007BFF;
+}
+
+/* Responsive image styling */
+.responsive-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
