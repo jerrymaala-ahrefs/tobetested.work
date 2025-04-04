@@ -1,0 +1,20 @@
+/* filepath: /Users/jerrymaala/tobetested/tobetested.work/styles.css */
+
+/* Style for the navigation bar */
+nav ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 1rem;
+    background-color: #f0f0f0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #007BFF;
+}

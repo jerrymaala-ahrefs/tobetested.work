@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Static Site!!</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+    <div id="nav-placeholder"></div>
+
     <h1>Welcome to My GitHub Pages Site</h1>
     <p>This is a simple static website.</p>
+
+    <script>
+        fetch("nav.html")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById("nav-placeholder").innerHTML = data;
+            })
+            .catch(error => {
+                console.error("Error loading navigation:", error);
+                document.getElementById("nav-placeholder").innerHTML = "<p>Navigation failed to load.</p>";
+            });
+    </script>
 </body>
 </html>
