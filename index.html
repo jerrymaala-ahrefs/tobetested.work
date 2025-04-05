@@ -10,10 +10,21 @@
     <div id="nav-placeholder"></div>
 
     <!-- Responsive Image -->
-    <img src="images/welcome-to-my-site.png" alt="Welcome banner for my static website" class="responsive-image" />
+    <!--<img src="images/welcome-to-my-site.png" alt="Welcome banner for my static website" class="responsive-image" /> -->
+    <img id="random-image" src="images/welcome-to-my-site.png" alt="Welcome banner for my static website" class="responsive-image" />
 
     <script src="scripts/load-nav.js"></script>
     <script>
+        // Array of image file names
+        const images = ["welcome-to-my-site.png", "welcome-to-my-site-haring.png", "welcome-to-my-site-warhol.png"];
+    
+        // Select a random image
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+    
+        // Update the src attribute of the image
+        document.getElementById("random-image").src = `images/${randomImage}`;
+    
+        // Load the navigation menu
         loadNavigation("nav.html");
     </script>
 </body>
