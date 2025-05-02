@@ -47,8 +47,9 @@
             // Replace `/` with `--` and construct the Guest site URL
             const convertedUrl = `https://git-${gitInput.replace(/\//g, "--")}.ahrefs.me`;
 
-            // Display the result
-            document.getElementById("converted-url").textContent = convertedUrl;
+            // Display the result as a clickable link
+            const convertedUrlElement = document.getElementById("converted-url");
+            convertedUrlElement.innerHTML = `<a href="${convertedUrl}" target="_blank" rel="noopener noreferrer">${convertedUrl}</a>`;
         });
 
         // Handle the "Convert to App URL" button
@@ -59,8 +60,9 @@
             // Replace `/` with `--` and construct the App URL
             const convertedUrl = `https://git-${gitInput.replace(/\//g, "--")}.app.ahrefs.me`;
 
-            // Display the result
-            document.getElementById("converted-url").textContent = convertedUrl;
+            // Display the result as a clickable link
+            const convertedUrlElement = document.getElementById("converted-url");
+            convertedUrlElement.innerHTML = `<a href="${convertedUrl}" target="_blank" rel="noopener noreferrer">${convertedUrl}</a>`;
         });
 
         // Handle the "Convert URL to Git branch" button
