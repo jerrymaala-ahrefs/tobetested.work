@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git to URL Converter</title>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+    <h1>Git to URL Converter</h1>
+    <p>Enter a Git branch name (e.g., <code>exequiel/fe-pmimport-success</code>) to convert it into a URL.</p>
+
+    <!-- Converter Form -->
+    <form id="converter-form">
+        <textarea id="git-input" placeholder="Enter branch name here..." rows="3" style="width: 100%;"></textarea>
+        <button type="submit" id="guest-url-btn">Convert to Guest site URL</button>
+        <button type="button" id="app-url-btn">Convert to App URL</button>
+    </form>
+
+    <!-- Result -->
+    <p><strong>Converted URL:</strong> <span id="converted-url"></span></p>
+
+    <!-- URL to Git Branch Converter -->
+    <h2>URL to Git Branch Converter</h2>
+    <p>Enter a URL (e.g., <code>https://git-exequiel--fe-pmimport-success.app.ahrefs.me</code>) to convert it back to a Git branch name.</p>
+    <form id="url-to-branch-form">
+        <input type="text" id="url-input" placeholder="Enter URL here..." style="width: 100%;" />
+        <button type="button" id="url-to-branch-btn">Convert URL to Git branch</button>
+    </form>
+
+    <!-- Result -->
+    <p><strong>Converted Git Branch:</strong> <span id="converted-branch"></span></p>
+
+    <script src="../scripts/load-nav.js"></script>
+    <script>
+        loadNavigation("../nav.html");
+
+        // Handle the "Convert to Guest site URL" button
+        document.getElementById("converter-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the input value
+            const gitInput = document.getElementById("git-input").value;
+
+            // Replace `/` with `--` and construct the Guest site URL
+            const convertedUrl = `https://git-${gitInput.replace(/\//g, "--")}.ahrefs.me`;
+
+            // Display the result
+            document.getElementById("converted-url").textContent = convertedUrl;
+        });
+
+        // Handle the "Convert to App URL" button
+        document.getElementById("app-url-btn").addEventListener("click", function() {
+            // Get the input value
+            const gitInput = document.getElementById("git-input").value;
+
+            // Replace `/` with `--` and construct the App URL
+            const convertedUrl = `https://git-${gitInput.replace(/\//g, "--")}.app.ahrefs.me`;
+
+            // Display the result
+            document.getElementById("converted-url").textContent = convertedUrl;
+        });
+
+        // Handle the "Convert URL to Git branch" button
+        document.getElementById("url-to-branch-btn").addEventListener("click", function() {
+            // Get the input value
+            const urlInput = document.getElementById("url-input").value;
+
+            // Extract the branch name from the URL
+            const branchName = urlInput
+                .replace(/^https:\/\/git-/, "") // Remove the "https://git-" prefix
+                .replace(/\.app\.ahrefs\.me$/, "") // Remove the ".app.ahrefs.me" suffix
+                .replace(/\.ahrefs\.me$/, "") // Remove the ".ahrefs.me" suffix
+                .replace(/--/g, "/"); // Replace "--" with "/"
+
+            // Display the result
+            document.getElementById("converted-branch").textContent = branchName;
+        });
+    </script>
+</body>
+</html>
