@@ -1,5 +1,3 @@
-// filepath: /Users/jerrymaala/tobetested/tobetested.work/scripts/load-nav.js
-
 function loadNavigation(navPath) {
     fetch(navPath)
         .then(response => {
@@ -16,3 +14,8 @@ function loadNavigation(navPath) {
             document.getElementById("nav-placeholder").innerHTML = "<p>Navigation failed to load.</p>";
         });
 }
+
+// Automatically load navigation when the script is included
+document.addEventListener("DOMContentLoaded", () => {
+    loadNavigation("../nav.html");
+});
