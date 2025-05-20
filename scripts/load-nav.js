@@ -18,4 +18,13 @@ function loadNavigation(navPath) {
 // Automatically load navigation when the script is included
 document.addEventListener("DOMContentLoaded", () => {
     loadNavigation("../nav.html");
+
+    // Dynamically add the analytics script if not already present
+    if (!document.querySelector('script[src="https://analytics-staging.ahrefs.dev/analytics.js"]')) {
+        const analyticsScript = document.createElement("script");
+        analyticsScript.src = "https://analytics-staging.ahrefs.dev/analytics.js";
+        analyticsScript.setAttribute("data-key", "ZZZpusAb5gpRzffR2VjP9A");
+        analyticsScript.async = true;
+        document.head.appendChild(analyticsScript);
+    }
 });
