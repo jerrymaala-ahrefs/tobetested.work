@@ -15,18 +15,30 @@
     <h1>Sign-up test</h1>
     <p>This a sign-up test for Web Analytics test in PROD</p>
 
-   <!-- <a href="#" class="AhrefsAnalytics-event-signup" id="signup-btn">Sign Up</a>-->
     <a class="AhrefsAnalytics-event-ProdSignup" href="#">Sign up</a>
     
     <br><br>
     <button type="button" id="submit-btn">Submit</button>
 
+    <br><br>
+    <!-- Submit Form -->
+    <form class="AhrefsAnalytics-event-submitform" action="/submit" id="prod-submit-form" style="border: 2px solid #007bff; border-radius: 8px; padding: 20px; max-width: 400px; background: #f8f9fa;">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+        <br><br>
+        <button type="submit" id="submit-form-btn">Submit Form</button>
+    </form>
 
     <script>
         document.getElementById('submit-btn').addEventListener('click', function() {
             if (window.AhrefsAnalytics != null) {
                 window.AhrefsAnalytics.sendEvent('ProdSubmit');
             }
+        });
+
+        document.getElementById('prod-submit-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submitted! (This is a test alert, you can just close it.)');
         });
     </script>
 </body>
