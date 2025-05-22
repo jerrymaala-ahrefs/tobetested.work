@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up test for Web Analytics</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="h6UMgrhj4EK3xHtd2u1jCg" async></script>
+    <script src="../scripts/load-nav.js"></script>
+</head>
+<body>
+    <!-- Navigation Placeholder -->
+    <div id="nav-placeholder"></div>
+
+    <h1>Sign-up test</h1>
+    <p>This a sign-up test for Web Analytics test in PROD</p>
+
+   <!-- <a href="#" class="AhrefsAnalytics-event-signup" id="signup-btn">Sign Up</a>-->
+    <a class="AhrefsAnalytics-event-ProdSignup" href="#">Sign up</a>
+    
+    <br><br>
+    <button type="button" id="submit-btn">Submit</button>
+
+
+    <script>
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            if (window.AhrefsAnalytics != null) {
+                window.AhrefsAnalytics.sendEvent('ProdSubmit');
+            }
+        });
+    </script>
+</body>
+</html>
