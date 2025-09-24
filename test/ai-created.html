@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Bulk Detection Test Page</title>
+  <style>
+    :root {
+      --bg: #0f172a; /* slate-900 */
+      --panel: #111827ee; /* gray-900 */
+      --text: #e5e7eb; /* gray-200 */
+      --muted: #9ca3af; /* gray-400 */
+      --accent: #60a5fa; /* blue-400 */
+      --card: #111827; /* gray-900 */
+      --border: #1f2937; /* gray-800 */
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: var(--text); }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: linear-gradient(180deg,var(--panel),rgba(17,24,39,0.7));
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 16px 20px; }
+    h1 { font-size: 1.25rem; margin: 0 0 8px; letter-spacing: 0.2px; }
+    .controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .controls label { display: inline-flex; gap: 8px; align-items: center; font-size: 0.9rem; color: var(--muted); }
+    .btn {
+      border: 1px solid var(--border);
+      background: #0b1220; color: var(--text);
+      padding: 8px 12px; border-radius: 10px; cursor: pointer; font-size: 0.9rem;
+    }
+    .btn:hover { border-color: var(--accent); }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; padding: 20px; }
+    .card { grid-column: span 6; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; min-height: 180px; }
+    @media (max-width: 900px) { .card { grid-column: span 12; } }
+    .card header { position: static; background: transparent; border: 0; padding: 12px 14px; }
+    .meta { display: flex; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 0.8rem; }
+    .title { font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .body { padding: 0 14px 14px; line-height: 1.5; white-space: pre-wrap; }
+    .actions { display: flex; gap: 8px; margin-left: auto; }
+    .chips { display: inline-flex; gap: 6px; }
+    .chip { border: 1px solid var(--border); padding: 2px 6px; font-size: 0.7rem; border-radius: 999px; color: var(--muted); }
+    footer { padding: 16px 20px 40px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+    .hide { display: none !important; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>AI Bulk Detection Test Page</h1>
+      <div class="controls">
+        <strong style="font-size:0.95rem;color:#cbd5e1">Filters:</strong>
+        <label><input type="checkbox" class="flt" value="blog" checked /> Blog posts</label>
+        <label><input type="checkbox" class="flt" value="product" checked /> Product descriptions</label>
+        <label><input type="checkbox" class="flt" value="faq" checked /> FAQs</label>
+        <label><input type="checkbox" class="flt" value="review" checked /> Reviews</label>
+        <span style="flex:1"></span>
+        <button class="btn" id="copyAll">Copy visible as text</button>
+        <button class="btn" id="downloadCSV">Download CSV</button>
+        <button class="btn" id="downloadJSON">Download JSON</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="grid" id="grid">
+    <!-- BLOG POSTS (5) -->
+    <article class="card sample" data-type="blog" data-id="blog-01">
+      <header>
+        <div class="title">The Quiet Power of Micro-Optimizations</div>
+        <div class="meta"><span>#blog-01</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">blog</span></span></div>
+      </header>
+      <div class="body">Small, repeatable improvements compound. By slicing tasks into measurable steps and iterating quickly, teams create momentum that feels effortless yet moves metrics. The key is feedback cadence: instrument, observe, adjust, repeat.</div>
+      <div class="wrap" style="padding: 0 14px 14px">
+        <div class="actions">
+          <button class="btn copy">Copy</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card sample" data-type="blog" data-id="blog-02">
+      <header>
+        <div class="title">Why Clean Data Outperforms Clever Models</div>
+        <div class="meta"><span>#blog-02</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">blog</span></span></div>
+      </header>
+      <div class="body">Most performance gains come from disciplined data hygiene—consistent schemas, documented lineage, and sober de-duplication. Algorithms amplify signal and noise alike; only clean pipelines make accuracy predictable.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="blog" data-id="blog-03">
+      <header>
+        <div class="title">The Cost of Waiting for Perfect</div>
+        <div class="meta"><span>#blog-03</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">blog</span></span></div>
+      </header>
+      <div class="body">Shipping early exposes assumptions to daylight. Every additional week of polishing risks optimizing the wrong thing. Release, learn, and course-correct while the surface area is still small.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="blog" data-id="blog-04">
+      <header>
+        <div class="title">Human-in-the-Loop Isn’t Optional</div>
+        <div class="meta"><span>#blog-04</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">blog</span></span></div>
+      </header>
+      <div class="body">Automation is a multiplier for well-designed processes, not a substitute for judgment. Feedback from real users calibrates models, prevents drift, and highlights edge cases documentation misses.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="blog" data-id="blog-05">
+      <header>
+        <div class="title">Latency as a Product Feature</div>
+        <div class="meta"><span>#blog-05</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">blog</span></span></div>
+      </header>
+      <div class="body">Speed changes behavior. When responses feel instant, people ask more questions, iterate more boldly, and discover value faster. Reducing friction often beats adding features.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <!-- PRODUCT DESCRIPTIONS (5) -->
+    <article class="card sample" data-type="product" data-id="prd-01">
+      <header>
+        <div class="title">Nimbus NotePad — Pocket Ideas, Zero Drag</div>
+        <div class="meta"><span>#prd-01</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">product</span></span></div>
+      </header>
+      <div class="body">A distraction-free notepad that launches in under a second. Markdown support, offline-first sync, and a tiny memory footprint. Capture sparks before they fade.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="product" data-id="prd-02">
+      <header>
+        <div class="title">Aurora Desk Lamp — Focus in Any Room</div>
+        <div class="meta"><span>#prd-02</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">product</span></span></div>
+      </header>
+      <div class="body">Edge-lit illumination with adaptive warmth. Tap to shift from crisp task mode to gentle evening tones. Low-glare optics keep eyes fresh for long sessions.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="product" data-id="prd-03">
+      <header>
+        <div class="title">TrailBeat Earbuds — Move with Your Music</div>
+        <div class="meta"><span>#prd-03</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">product</span></span></div>
+      </header>
+      <div class="body">Sweat-proof fit, ambient passthrough, and reliable 8‑hour battery. Crisp mids and steady bass tuned for workouts and walking calls.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="product" data-id="prd-04">
+      <header>
+        <div class="title">Glacier Bottle — Cold That Lasts</div>
+        <div class="meta"><span>#prd-04</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">product</span></span></div>
+      </header>
+      <div class="body">Triple-wall insulation and a magnetic cap you won’t misplace. Holds temperature and slides into most cup holders without a squeak.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="product" data-id="prd-05">
+      <header>
+        <div class="title">PixelPro Webcam — Look Clear, Sound Clear</div>
+        <div class="meta"><span>#prd-05</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">product</span></span></div>
+      </header>
+      <div class="body">1080p at 60fps with automatic framing and noise-reduced mics. Mount anywhere; appear centered and audible without fiddling.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <!-- FAQ (5) -->
+    <article class="card sample" data-type="faq" data-id="faq-01">
+      <header>
+        <div class="title">What happens if I cancel?</div>
+        <div class="meta"><span>#faq-01</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">faq</span></span></div>
+      </header>
+      <div class="body">Your account downgrades at the end of the current billing period. You keep access to exports and can reactivate anytime without losing data.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="faq" data-id="faq-02">
+      <header>
+        <div class="title">Do you offer discounts for teams?</div>
+        <div class="meta"><span>#faq-02</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">faq</span></span></div>
+      </header>
+      <div class="body">Yes. Volume pricing applies automatically at checkout. For 25+ seats, contact sales for consolidated billing and SSO options.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="faq" data-id="faq-03">
+      <header>
+        <div class="title">How is my data secured?</div>
+        <div class="meta"><span>#faq-03</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">faq</span></span></div>
+      </header>
+      <div class="body">Data is encrypted in transit and at rest. Role‑based access limits who can view content. Backups run nightly with regional redundancy.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="faq" data-id="faq-04">
+      <header>
+        <div class="title">Can I import from other tools?</div>
+        <div class="meta"><span>#faq-04</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">faq</span></span></div>
+      </header>
+      <div class="body">CSV and JSON imports are supported. Map your fields during upload to keep relationships intact.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="faq" data-id="faq-05">
+      <header>
+        <div class="title">Is there an API?</div>
+        <div class="meta"><span>#faq-05</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">faq</span></span></div>
+      </header>
+      <div class="body">Yes. REST and webhook endpoints cover common workflows. Use personal access tokens or OAuth for authentication.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <!-- REVIEWS (5) -->
+    <article class="card sample" data-type="review" data-id="rev-01">
+      <header>
+        <div class="title">“Exactly what I needed for daily notes.”</div>
+        <div class="meta"><span>#rev-01</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">review</span></span></div>
+      </header>
+      <div class="body">Launches fast, syncs reliably, and doesn’t nag me with pop‑ups. My inbox is quieter, my head is clearer.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="review" data-id="rev-02">
+      <header>
+        <div class="title">“Great sound for calls and runs.”</div>
+        <div class="meta"><span>#rev-02</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">review</span></span></div>
+      </header>
+      <div class="body">The ambient mode keeps me aware on busy streets, and people say I’m clearer on Zoom. Battery life is as advertised.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="review" data-id="rev-03">
+      <header>
+        <div class="title">“Thoughtful details everywhere.”</div>
+        <div class="meta"><span>#rev-03</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">review</span></span></div>
+      </header>
+      <div class="body">The bottle cap snaps back magnetically so it never taps the desk. Doesn’t leak, doesn’t rattle, stays cold on long drives.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="review" data-id="rev-04">
+      <header>
+        <div class="title">“Set it and forget it lighting.”</div>
+        <div class="meta"><span>#rev-04</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">review</span></span></div>
+      </header>
+      <div class="body">I keep it in warm mode after sunset and it feels easier on my eyes. No flicker on camera, which is a bonus for calls.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+
+    <article class="card sample" data-type="review" data-id="rev-05">
+      <header>
+        <div class="title">“Makes remote meetings less awkward.”</div>
+        <div class="meta"><span>#rev-05</span><span class="chips"><span class="chip">AI-gen</span><span class="chip">review</span></span></div>
+      </header>
+      <div class="body">Auto-framing keeps me centered even when I stand. Mic picks up my voice without the keyboard clatter. Solid upgrade.</div>
+      <div class="wrap" style="padding: 0 14px 14px"><div class="actions"><button class="btn copy">Copy</button></div></div>
+    </article>
+  </main>
+
+  <footer class="wrap">
+    Tip: Each card has <code>data-type</code> and <code>data-id</code> attributes so your scripts can select and export content in bulk. Use the toolbar to copy visible samples or download CSV/JSON.
+  </footer>
+
+  <script>
+    const checks = Array.from(document.querySelectorAll('.flt'));
+    const grid = document.getElementById('grid');
+
+    function applyFilters(){
+      const enabled = new Set(checks.filter(c=>c.checked).map(c=>c.value));
+      for (const el of grid.querySelectorAll('.sample')){
+        el.classList.toggle('hide', !enabled.has(el.dataset.type));
+      }
+    }
+    checks.forEach(c=>c.addEventListener('change', applyFilters));
+    applyFilters();
+
+    function sampleToObj(el){
+      const text = el.querySelector('.body')?.innerText?.trim() || '';
+      const title = el.querySelector('.title')?.innerText?.trim() || '';
+      return { id: el.dataset.id, type: el.dataset.type, title, text };
+    }
+
+    // Copy per card
+    for (const btn of document.querySelectorAll('.copy')){
+      btn.addEventListener('click', async (e)=>{
+        const el = e.target.closest('.sample');
+        const {id,type,title,text} = sampleToObj(el);
+        await navigator.clipboard.writeText(`[${id}|${type}] ${title}\n\n${text}`);
+        btn.textContent = 'Copied!';
+        setTimeout(()=>btn.textContent='Copy', 1200);
+      })
+    }
+
+    // Collect currently visible samples
+    function collectVisible(){
+      return Array.from(document.querySelectorAll('.sample'))
+        .filter(el=>!el.classList.contains('hide'))
+        .map(sampleToObj);
+    }
+
+    // Copy all visible as text
+    document.getElementById('copyAll').addEventListener('click', async ()=>{
+      const parts = collectVisible().map(o=>`[${o.id}|${o.type}] ${o.title}\n\n${o.text}`);
+      await navigator.clipboard.writeText(parts.join('\n\n---\n\n'));
+      const btn = document.getElementById('copyAll');
+      btn.textContent = 'Copied ✓'; setTimeout(()=>btn.textContent='Copy visible as text', 1200);
+    });
+
+    function download(filename, content, mime='text/plain'){
+      const blob = new Blob([content], {type: mime});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename; a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // CSV download
+    document.getElementById('downloadCSV').addEventListener('click', ()=>{
+      const rows = [['id','type','title','text']].concat(collectVisible().map(o=>[
+        o.id,
+        o.type,
+        o.title.replaceAll('"','""'),
+        o.text.replaceAll('\n',' ').replaceAll('"','""')
+      ]));
+      const csv = rows.map(r=>r.map(v=>`"${v}"`).join(',')).join('\n');
+      download('samples.csv', csv, 'text/csv');
+    });
+
+    // JSON download
+    document.getElementById('downloadJSON').addEventListener('click', ()=>{
+      download('samples.json', JSON.stringify(collectVisible(), null, 2), 'application/json');
+    });
+  </script>
+</body>
+</html>

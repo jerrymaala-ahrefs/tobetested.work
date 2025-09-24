@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up test for Web Analytics</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://analytics-staging.ahrefs.dev/analytics.js" data-key="ZZZpusAb5gpRzffR2VjP9A" async></script>
+    <script src="../scripts/load-nav.js"></script>
+</head>
+<body>
+    <!-- Navigation Placeholder -->
+    <div id="nav-placeholder"></div>
+
+    <h1>Sign-up test</h1>
+    <p>This is for Web Analytics test where multiple events are triggered.</p>
+
+    <button type="button" id="multi-event-btn">Trigger Multiple Events</button>
+
+    <script>
+        document.getElementById('multi-event-btn').addEventListener('click', async function() {
+            if (window.AhrefsAnalytics != null) {
+                // Trigger ctaClick event
+                await window.AhrefsAnalytics.sendEvent('ctaClick');
+                // Wait a short moment to ensure tracking completes
+                setTimeout(function() {
+                    // Trigger videoPlay event
+                    window.AhrefsAnalytics.sendEvent('videoPlay');
+                }, 500); // 500ms delay between events
+            }
+        });
+    </script>
+</body>
+</html>
